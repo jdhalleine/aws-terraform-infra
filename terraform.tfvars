@@ -12,3 +12,14 @@ private_app_subnet_az2_cidr = "10.0.3.0/24"
 
 private_data_subnet_az1_cidr = "10.0.4.0/24"
 private_data_subnet_az2_cidr = "10.0.5.0/24"
+
+#security groups variables
+ssh_ip = "165.225.204.117/32"
+
+#rds
+db_name = "rentzone"
+db_username = "jdhalleine"
+db_password = "Password123!"
+
+#alb variables 
+target_type = "ip"

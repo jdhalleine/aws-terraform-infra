@@ -9,3 +9,11 @@ variable "private_app_subnet_az1_cidr" {}
 variable "private_app_subnet_az2_cidr" {}
 variable "private_data_subnet_az1_cidr" {}
 variable "private_data_subnet_az2_cidr" {}
+
+variable "ssh_ip" {}
+
+variable "db_username" {}
+variable "db_password" {}
+variable "db_name" {}
+
+variable "target_type" {}
