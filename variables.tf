@@ -21,9 +21,5 @@ variable "target_type" {}
 variable "env_file_bucket_name" {}
 variable "env_file_name" {}
 
-variable "ecs_task_execution_role_arn" {}
 variable "architecture" {}
 variable "container_image" {}
-variable "region" {}
-variable "app_server_security_group_id" {}
-variable "alb_target_group_arn" {}
