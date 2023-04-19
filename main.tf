@@ -60,8 +60,8 @@ module "rds" {
   project_name = local.project_name
   environment  = local.environment
   db_name      = var.db_name
-  db_username     = var.db_username
-  db_password     = var.db_password
+  db_username  = var.db_username
+  db_password  = var.db_password
 
 }
 
@@ -69,11 +69,11 @@ module "rds" {
 module "alb" {
   source = "git@github.com:jdhalleine/aws-terraform.git//alb"
 
-  project_name= local.project_name
-  environment= local.environment
+  project_name          = local.project_name
+  environment           = local.environment
   alb_security_group_id = module.security-groups.alb_security_group_id
-  public_subnet_az1_id = module.vpc.public_subnet_az1_id
-  public_subnet_az2_id = module.vpc.public_subnet_az2_id
-  target_type = var.target_type
-  vpc_id = module.vpc.vpc_id
+  public_subnet_az1_id  = module.vpc.public_subnet_az1_id
+  public_subnet_az2_id  = module.vpc.public_subnet_az2_id
+  target_type           = var.target_type
+  vpc_id                = module.vpc.vpc_id
 }

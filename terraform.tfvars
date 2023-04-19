@@ -17,7 +17,7 @@ private_data_subnet_az2_cidr = "10.0.5.0/24"
 ssh_ip = "165.225.204.117/32"
 
 #rds
-db_name = "rentzone"
+db_name     = "rentzone"
 db_username = "jdhalleine"
 db_password = "Password123!"
 
