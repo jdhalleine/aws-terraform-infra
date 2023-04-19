@@ -23,3 +23,8 @@ db_password = "Password123!"
 
 #alb variables 
 target_type = "ip"
+
+#s3 variables 
+env_file_bucket_name = "jdhalleine-terraform-s3"
+env_file_name        = "rentzone.env"
+
