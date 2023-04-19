@@ -94,7 +94,6 @@ module "iam" {
 
   project_name         = local.project_name
   environment          = local.environment
-  env_file_bucket_name = module.s3.env_file_bucket_name
 }
 
 #create ecs

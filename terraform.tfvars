@@ -29,5 +29,5 @@ env_file_bucket_name = "jdhalleine-terraform-s3"
 env_file_name        = "rentzone.env"
 
 #ecs varibles
-  architecture                 = "X86_64"
-  container_image              = "835576258342.dkr.ecr.eu-west-2.amazonaws.com/rentzone:latest"
+architecture    = "X86_64"
+container_image = "835576258342.dkr.ecr.eu-west-2.amazonaws.com/rentzone:latest"
