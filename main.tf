@@ -77,3 +77,42 @@ module "alb" {
   target_type           = var.target_type
   vpc_id                = module.vpc.vpc_id
 }
+
+#create s3-bucket
+module "s3" {
+  source = "git@github.com:jdhalleine/aws-terraform.git//s3"
+
+  project_name         = local.project_name
+  env_file_bucket_name = var.env_file_bucket_name
+  env_file_name        = var.env_file_name
+
+}
+
+#create iam
+module "iam" {
+  source = "git@github.com:jdhalleine/aws-terraform.git//iam-role"
+
+  project_name         = local.project_name
+  environment          = local.environment
+  env_file_bucket_name = module.s3.env_file_bucket_name
+}
+
+#create ecs
+module "ecs" {
+  source = "git@github.com:jdhalleine/aws-terraform.git//ecs"
+
+  project_name = local.project_name
+  environment  = local.environment
+
+  ecs_task_execution_role_arn  = module.iam.ecs_task_execution_role_arn
+  architecture                 = var.architecture
+  container_image              = var.container_image
+  env_file_bucket_name         = module.s3.env_file_bucket_name
+  env_file_name                = module.s3.env_file_name
+  region                       = local.region
+  private_app_subnet_az1_id    = module.vpc.private_app_subnet_az1_id
+  private_app_subnet_az2_id    = module.vpc.private_app_subnet_az2_id
+  app_server_security_group_id = module.security-groups.app_server_security_group_id
+  alb_target_group_arn         = module.alb.alb_target_group_arn
+
+}
