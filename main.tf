@@ -63,6 +63,11 @@ module "rds" {
   db_username  = var.db_username
   db_password  = var.db_password
 
+  private_data_subnet_az1_id = module.vpc.private_data_subnet_az1_id
+  private_data_subnet_az2_id = module.vpc.private_data_subnet_az2_id
+  database_security_group_id = module.security-groups.database_security_group_id
+  availability_zone_1 = module.vpc.availability_zone_1
+
 }
 
 #create alb
@@ -88,12 +93,13 @@ module "s3" {
 
 }
 
-#create iam
-module "iam" {
+#create ecs taks execution role
+module "ecs_task_execution_role" {
   source = "git@github.com:jdhalleine/aws-terraform.git//iam-role"
 
-  project_name         = local.project_name
-  environment          = local.environment
+  project_name                  = local.project_name
+  env_file_bucket_name          = module.s3.env_file_name
+  environment                   = local.environment
 }
 
 #create ecs
@@ -103,7 +109,7 @@ module "ecs" {
   project_name = local.project_name
   environment  = local.environment
 
-  ecs_task_execution_role_arn  = module.iam.ecs_task_execution_role_arn
+  ecs_task_execution_role_arn  = module.ecs_task_execution_role.ecs_task_execution_role_arn
   architecture                 = var.architecture
   container_image              = var.container_image
   env_file_bucket_name         = module.s3.env_file_bucket_name
